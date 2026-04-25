@@ -20,10 +20,11 @@ h2 {
 /* --- 大按钮部分 --- */
 .button-container {
     margin-top: 60px;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px; 
+    display: flex;           /* 改为 flex，占满整行宽度 */
+    flex-direction: column;  /* 保持垂直排列 */
+    align-items: center;     /* 关键：这会让内部的按钮水平居中 */
+    gap: 20px;               /* 50px 间距有点大，建议先改小看效果 */
+    width: 100%;             /* 确保容器宽度足够用来居中 */
 }
 
 button {
