@@ -9,7 +9,7 @@ img {
     width: 200px;
     height: auto;
     display: block;
-    margin: 20px auto 0; /* 增加顶部间距，给语言按钮留空间 */
+    margin: 20px auto 0;
 }
 
 h2 {
@@ -17,17 +17,23 @@ h2 {
     color: black;
 }
 
-/* --- 大按钮部分 --- */
+/* --- 统一大按钮部分 (主页和联络页通用) --- */
 .button-container {
     margin-top: 60px;
-    display: flex;           /* 改为 flex，占满整行宽度 */
-    flex-direction: column;  /* 保持垂直排列 */
-    align-items: center;     /* 关键：这会让内部的按钮水平居中 */
-    gap: 20px;               /* 50px 间距有点大，建议先改小看效果 */
-    width: 100%;             /* 确保容器宽度足够用来居中 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
 }
 
-button {
+/* 重点：创建一个通用的大按钮类，确保 <a> 和 <button> 长得完全一样 */
+.main-btn, button {
+    text-decoration: none; /* 针对 <a> 标签去下划线 */
+    display: inline-flex;  /* 居中文字用 */
+    align-items: center;
+    justify-content: center;
+    
     width: 450px; 
     height: 80px;
     border-radius: 200px;
@@ -35,6 +41,7 @@ button {
     background-color: #ECDCC2;
     color: black;
     font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
     position: relative;
     transform-style: preserve-3d;
@@ -42,13 +49,11 @@ button {
     box-shadow: 0 5px #999;
 }
 
-button::after {
+/* 悬停效果：彩虹光圈 */
+.main-btn::after, button::after {
     content: '';
     position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
+    top: -5px; left: -5px; right: -5px; bottom: -5px;
     transform: translateZ(-1px);
     z-index: -1;
     border-radius: 205px;
@@ -57,30 +62,28 @@ button::after {
     transition: all 0.3s ease;
 }
 
-button:hover {
-    background-color: #ECDCC2;
+.main-btn:hover, button:hover {
     box-shadow: none; 
     transform: scale(1.02);
 }
 
-button:hover::after {
+.main-btn:hover::after, button:hover::after {
     opacity: 1;
-    /* 解决你说的“下面看不见”：Y轴偏移增加到 20px */
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 
                 0 10px 40px rgba(0, 255, 0, 0.4), 
                 0 20px 60px rgba(0, 0, 255, 0.3);
 }
 
-button:active {
+.main-btn:active, button:active {
     transform: translateY(4px);
     box-shadow: 0 2px #666;
 }
 
-/* --- 右上角语言按钮 --- */
+/* --- 右上角语言按钮 (保持小尺寸，不被误改) --- */
 .lang-switch {
     position: absolute;
     top: 20px;
-    right: 20px; /* 稍微往里挪一点更美观 */
+    right: 20px;
     display: flex;
     gap: 10px;
     z-index: 100;
@@ -90,8 +93,8 @@ button:active {
     text-decoration: none;
     display: inline-block;
     padding: 8px 16px;
-    background: linear-gradient(90deg,rgba(114, 155, 42, 1) 0%, rgba(160, 199, 87, 1) 50%, rgba(209, 201, 132, 1) 100%); 
-    color: #444; /* 深灰色字比纯黑更高级 */
+    background: linear-gradient(90deg, #729b2a 0%, #a0c757 50%, #d1c984 100%); 
+    color: #444;
     border-radius: 50px;
     font-size: 13px;
     font-weight: bold;
@@ -99,24 +102,62 @@ button:active {
     transition: all 0.3s ease;
 }
 
-.lang-btn:hover {
-    background-color: skyblue;
-    color: white !important; /* 强制变白 */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
-
-.lang-btn:active {
-    transform: translateY(0);
-}
-
-/* 适配手机屏幕：如果屏幕太窄，语言按钮会自动缩小或调整 */
+/* 手机适配 */
 @media (max-width: 600px) {
-    button {
-        width: 80vw; /* 手机上按钮不要太宽 */
-    }
-    .lang-switch {
-        top: 10px;
-        right: 10px;
+    .main-btn, button {
+        width: 85vw;
+        height: 70px;
     }
 }
+/* 专属联络页大按钮的样式 */
+.contact-big-btn {
+    /* --- 核心修改：让第一个按钮向下移动 --- */
+    margin-top: 300px; /* 数值越大，按钮越往下。你可以调成 150px 或 200px 直到居中为止 */
+    
+    /* 之前的尺寸保持不变 */
+    width: 450px !important;
+    height: 80px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 200px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px #999;
+}
+
+/* 优化：只让第一个按钮带 margin，防止按钮之间的 gap 变得奇奇怪怪 */
+.contact-big-btn:not(:first-child) {
+    margin-top: 0;
+}
+
+/* 加上你想要的彩虹光圈 */
+.contact-big-btn::after {
+    content: '';
+    position: absolute;
+    top: -5px; left: -5px; right: -5px; bottom: -5px;
+    transform: translateZ(-1px);
+    z-index: -1;
+    border-radius: 205px;
+    background: linear-gradient(to right, red, orange, yellow, green, blue, purple);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+/* 悬停效果 */
+.contact-big-btn:hover {
+    transform: scale(1.02);
+    box-shadow: none;
+}
+
+.contact-big-btn:hover::after {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 
+                0 10px 40px rgba(0, 255, 0, 0.4), 
+                0 20px 60px rgba(0, 0, 255, 0.3);
+}
+    
