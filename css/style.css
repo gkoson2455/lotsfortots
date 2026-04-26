@@ -19,7 +19,7 @@ h2 {
 
 /* --- 统一大按钮部分 (主页和联络页通用) --- */
 .button-container {
-    margin-top: 60px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,13 +28,16 @@ h2 {
 }
 
 /* 重点：创建一个通用的大按钮类，确保 <a> 和 <button> 长得完全一样 */
-.main-btn, button {
-    text-decoration: none; /* 针对 <a> 标签去下划线 */
-    display: inline-flex;  /* 居中文字用 */
+.main-btn,
+button {
+    text-decoration: none;
+    /* 针对 <a> 标签去下划线 */
+    display: inline-flex;
+    /* 居中文字用 */
     align-items: center;
     justify-content: center;
-    
-    width: 450px; 
+
+    width: 450px;
     height: 80px;
     border-radius: 200px;
     border: none;
@@ -50,10 +53,14 @@ h2 {
 }
 
 /* 悬停效果：彩虹光圈 */
-.main-btn::after, button::after {
+.main-btn::after,
+button::after {
     content: '';
     position: absolute;
-    top: -5px; left: -5px; right: -5px; bottom: -5px;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
     transform: translateZ(-1px);
     z-index: -1;
     border-radius: 205px;
@@ -62,19 +69,22 @@ h2 {
     transition: all 0.3s ease;
 }
 
-.main-btn:hover, button:hover {
-    box-shadow: none; 
+.main-btn:hover,
+button:hover {
+    box-shadow: none;
     transform: scale(1.02);
 }
 
-.main-btn:hover::after, button:hover::after {
+.main-btn:hover::after,
+button:hover::after {
     opacity: 1;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 
-                0 10px 40px rgba(0, 255, 0, 0.4), 
-                0 20px 60px rgba(0, 0, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6),
+        0 10px 40px rgba(0, 255, 0, 0.4),
+        0 20px 60px rgba(0, 0, 255, 0.3);
 }
 
-.main-btn:active, button:active {
+.main-btn:active,
+button:active {
     transform: translateY(4px);
     box-shadow: 0 2px #666;
 }
@@ -93,27 +103,31 @@ h2 {
     text-decoration: none;
     display: inline-block;
     padding: 8px 16px;
-    background: linear-gradient(90deg, #729b2a 0%, #a0c757 50%, #d1c984 100%); 
+    background: linear-gradient(90deg, #729b2a 0%, #a0c757 50%, #d1c984 100%);
     color: #444;
     border-radius: 50px;
     font-size: 13px;
     font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
 /* 手机适配 */
 @media (max-width: 600px) {
-    .main-btn, button {
+
+    .main-btn,
+    button {
         width: 85vw;
         height: 70px;
     }
 }
+
 /* 专属联络页大按钮的样式 */
 .contact-big-btn {
     /* --- 核心修改：让第一个按钮向下移动 --- */
-    margin-top: 300px; /* 数值越大，按钮越往下。你可以调成 150px 或 200px 直到居中为止 */
-    
+    margin-top: 300px;
+    /* 数值越大，按钮越往下。你可以调成 150px 或 200px 直到居中为止 */
+
     /* 之前的尺寸保持不变 */
     width: 450px !important;
     height: 80px !important;
@@ -139,7 +153,10 @@ h2 {
 .contact-big-btn::after {
     content: '';
     position: absolute;
-    top: -5px; left: -5px; right: -5px; bottom: -5px;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
     transform: translateZ(-1px);
     z-index: -1;
     border-radius: 205px;
@@ -156,10 +173,25 @@ h2 {
 
 .contact-big-btn:hover::after {
     opacity: 1;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 
-                0 10px 40px rgba(0, 255, 0, 0.4), 
-                0 20px 60px rgba(0, 0, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6),
+        0 10px 40px rgba(0, 255, 0, 0.4),
+        0 20px 60px rgba(0, 0, 255, 0.3);
 
 }
 
+.site-footer {
+    margin-top: 30px;
+    /* 跟上面的大按钮保持距离 */
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    /* 加一条淡淡的线，区分内容区 */
+    width: 100%;
+    color: #666;
+    /* 颜色淡一点，不要抢了大按钮的风头 */
+    font-size: 16px;
+}
 
+.location-info p {
+    margin: 5px 0;
+}
