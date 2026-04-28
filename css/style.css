@@ -5,6 +5,20 @@ body {
     padding: 0;
 }
 
+body>a[href="index.html"] {
+    display: inline-block;
+    /* 别让它占满整行 */
+    width: auto;
+    height: auto;
+    cursor: default;
+    /* 先设为默认，里面的图片再设为 pointer */
+}
+
+body>a[href="index.html"] img {
+    cursor: pointer;
+    /* 只有指到图片才变手指 */
+}
+
 img {
     width: 300px;
     height: auto;
